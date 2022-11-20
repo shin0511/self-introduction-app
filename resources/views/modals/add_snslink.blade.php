@@ -9,12 +9,12 @@
         @csrf
         <div class="modal-body">
           <lavel>追加するSNSリンク</lavel>
-          <select class="form-control" name="snsname">  
-            <option value="Twitter">Twitter</option>
-            <option value="youtube">youtube</option>
-            <option value="Instargram">Instargram</option>
-            <option value="facebook">facebook</option>
-            <option value="TikTok">TikTok</option>
+          <select type="text" class="form-control" name="snsname">  
+            <option value="Twitter" name="snsname">Twitter</option>
+            <option value="youtube" name="snsname">youtube</option>
+            <option value="Instargram" name="snsname">Instargram</option>
+            <option value="facebook" name="snsname">facebook</option>
+            <option value="TikTok" name="snsname">TikTok</option>
           </select>
         </div>
         <div class="modal-body">

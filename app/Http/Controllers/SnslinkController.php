@@ -18,6 +18,7 @@ class SnslinkController extends Controller
     public function store(Request $request, Introduction $introduction)
     {
         $snslink = new Snslink();
+        $snslink->snsname = $request->input('snsname');
         $snslink->sns_link = $request->input('sns_link');
         $snslink->user_id = Auth::id();
         $snslink->introduction_id = $introduction->id;
@@ -35,6 +36,7 @@ class SnslinkController extends Controller
      */
     public function update(Request $request, Introduction $introduction, Snslink $snslink)
     {
+        $snslink->snsname = $request->input('snsname');
         $snslink->sns_link = $request->input('sns_link');
         $snslink->user_id = Auth::id();
         $snslink->introduction_id = $introduction->id;
