@@ -16,9 +16,9 @@ class IntroductionController extends Controller
      */
     public function index()
     {
-        $introductions = Auth::user()->introduction;
+        $introduction = Auth::user()->introduction;
 
-        return view('introduction.index', compact('introductions'));
+        return view('introduction.index', compact('introduction'));
     }
 
     /**
@@ -28,7 +28,7 @@ class IntroductionController extends Controller
      */
     public function create()
     {
-        $introductions = Auth::user()->introduction;
+        $introduction = Auth::user()->introduction;
 
         return view('introduction.create')
         ->with('user', Auth::user());
@@ -47,11 +47,11 @@ class IntroductionController extends Controller
             'self_introduction' => 'required',
         ]);
 
-        $introductions = new Introduction();
-        $introductions->nickname = $request->input('nickname');
-        $introductions->self_introduction = $request->input('self_introduction');
-        $introductions->user_id = Auth::id();
-        $introductions->save();
+        $introduction = new Introduction();
+        $introduction->nickname = $request->input('nickname');
+        $introduction->self_introduction = $request->input('self_introduction');
+        $introduction->user_id = Auth::id();
+        $introduction->save();
 
         return redirect()->route('introduction.index');
     }
@@ -62,11 +62,11 @@ class IntroductionController extends Controller
      * @param  \App\Models\Introduction  $introduction
      * @return \Illuminate\Http\Response
      */
-    public function show(Introduction $introductions)
+    public function show(Introduction $introduction)
     {
-        $introductions = Auth::user()->introduction;
+        $introduction = Auth::user()->introduction;
 
-        return view('introduction.show', compact('introductions'));
+        return view('introduction.show', compact('introduction'));
 
     }
 
@@ -76,11 +76,11 @@ class IntroductionController extends Controller
      * @param  \App\Models\Introduction  $introduction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Introduction $introductions)
+    public function edit(Introduction $introduction)
     {
-        $introductions = Auth::user()->introduction;
+        $introduction = Auth::user()->introduction;
 
-        return view('introduction.edit', compact('introductions'));
+        return view('introduction.edit', compact('introduction'));
     }
 
     /**
@@ -90,19 +90,19 @@ class IntroductionController extends Controller
      * @param  \App\Models\Introduction  $introduction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Introduction $introductions)
+    public function update(Request $request, Introduction $introduction)
     {
-        $introductions = Auth::user()->introduction;
+        $introduction = Auth::user()->introduction;
 
         $request->validate([
             'nickname' => 'required',
             'self_introduction' => 'required',
         ]);
 
-        $introductions->nickname = $request->input('nickname');
-        $introductions->self_introduction = $request->input('self_introduction');
-        $introductions->user_id = Auth::id();
-        $introductions->save();
+        $introduction->nickname = $request->input('nickname');
+        $introduction->self_introduction = $request->input('self_introduction');
+        $introduction->user_id = Auth::id();
+        $introduction->save();
 
         return redirect()->route('introduction.index');
     }
@@ -113,9 +113,9 @@ class IntroductionController extends Controller
      * @param  \App\Models\Introduction  $introduction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Introduction $introductions)
+    public function destroy(Introduction $introduction)
     {
-        $introductions->delete();
+        $introduction->delete();
 
         return redirect()->route('introduction.index');
     }

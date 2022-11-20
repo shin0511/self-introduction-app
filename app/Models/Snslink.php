@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Introduction extends Model
+class Snslink extends Model
 {
     use HasFactory;
 
-    /**
-     * 自己紹介に関連しているユーザーの取得
-     */
     public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function snslinks() {
-        return $this->hasMany(Snslink::class);
-    }
+    public function introduction() {
+        return $this->belongsTo(Introduction::class);
+    }    
 }

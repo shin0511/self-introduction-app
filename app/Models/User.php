@@ -49,4 +49,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Introduction::class);
     }
+
+    public function snslinks() {
+        return $this->hasMany(Snslink::class);
+    }
 }

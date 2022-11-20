@@ -20,16 +20,16 @@
 </div>
 
 <h2>自己紹介の登録</h2>
-<form action="{{ route('introduction.update',$introductions) }}" method="post">
+<form action="{{ route('introduction.update',$introduction) }}" method="post">
     @csrf
     @method('PUT')
     <div>
       <label for="nickname">ニックネーム</label><span style="color:red">必須</span>
-      <input type="text" name="nickname" value="{{ $introductions->nickname}}">
+      <input type="text" name="nickname" value="{{ $introduction->nickname}}">
     </div>
     <div>
       <label for="self_introduction">自己紹介</label><span style="color:red">必須</span>
-      <textarea name="self_introduction">{{ $introductions->self_introduction}}</textarea>
+      <textarea name="self_introduction">{{ $introduction->self_introduction}}</textarea>
     </div>
     <div>
       <button type="submit">更新</button>

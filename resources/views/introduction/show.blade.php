@@ -15,7 +15,7 @@
     </div>
 @endif
 
-@empty ($introductions)
+@empty ($introduction)
 <div>
     <a href="{{ route('introduction.create') }}" >
         <div>   
@@ -25,15 +25,15 @@
 </div> 
 @endempty
 
-@isset ($introductions)
+@isset ($introduction)
 <div>
     <h3>ニックネーム</h3>
-    <p>{{$introductions->nickname}}</p>
+    <p>{{$introduction->nickname}}</p>
     <h3>自己紹介</h3>
-    <p>{{$introductions->self_introduction}}</p>
+    <p>{{$introduction->self_introduction}}</p>
 </div>
 
-<a href="{{ route('introduction.edit', $introductions) }}" >
+<a href="{{ route('introduction.edit', $introduction) }}" >
         <div>   
             編集
         </div>

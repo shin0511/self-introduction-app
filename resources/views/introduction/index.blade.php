@@ -15,7 +15,7 @@
     </div>
 @endif
 
-@empty ($introductions)
+@empty ($introduction)
 <div>
     <a href="{{ route('introduction.create') }}" >
         <div>   
@@ -25,22 +25,39 @@
 </div> 
 @endempty
 
-@isset ($introductions)
-<div>
-    <h3>ニックネーム</h3>
-    <p>{{$introductions->nickname}}</p>
-    <h3>自己紹介</h3>
-    <p style="white-space: pre-wrap">{{$introductions->self_introduction}}</p>
-</div>
+@isset ($introduction)
+    <!-- Snslinkの追加用モーダル -->
+    @include('modals.add_snslink')
+    <div>
+        <h3>ニックネーム</h3>
+        <p>{{$introduction->nickname}}</p>
+        <h3>自己紹介</h3>
+        <p>{{$introduction->self_introduction}}</p>
+    </div>
+    
+    @foreach ($introduction->snslinks() as $snslink) 
+        <!-- ToDoの編集用モーダル -->
+        @include('modals.edit_snslink')
+        <!-- ToDoの削除用モーダル -->
+        @include('modals.delete_snslink')
+    
+        <h5>{{ $snslink->sns_link }}</h5>                                                                                                                                                                                 
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#editSnslinkModal{{ $snslink->id }}">編集</a></li>                                                  
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#deleteSnslinkModal{{ $snslink->id }}">削除</a></li>     
+    @endforeach
 
-<a href="{{ route('introduction.edit', $introductions) }}" >
-        <div>   
-            編集
-        </div>
-    </a>          
+    <div>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#addSnslinkModal{{ $introduction->id }}">SNSリンクを追加する</a>
+        <a href="{{ route('introduction.edit', $introduction) }}" >
+            <div>   
+                編集
+            </div>
+        </a>          
+    </div>
+
+
+    
 
 @endisset
-
-
 
 @endsection
