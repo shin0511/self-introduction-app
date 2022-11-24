@@ -33,26 +33,24 @@
         <p>{{$introduction->nickname}}</p>
         <h3>自己紹介</h3>
         <p>{{$introduction->self_introduction}}</p>
+        
     </div>
 
-    @foreach ($introduction->snslinks() as $snslink) 
+    @foreach ($snslinks as $snslink) 
         <!-- ToDoの編集用モーダル -->
         @include('modals.edit_snslink')
         <!-- ToDoの削除用モーダル -->
         @include('modals.delete_snslink')
-        <h5>{{ $snslink->snsname }}</h5> 
-        <h5>{{ $snslink->sns_link }}</h5>                                                                                                                                                                                 
+        <h5>
+            <a href="{{ $snslink->sns_link }}">{{ $snslink->snsname }}</a>
+        </h5>                                                                                                                                                                                  
         <li><a href="#" data-bs-toggle="modal" data-bs-target="#editSnslinkModal{{ $snslink->id }}">編集</a></li>                                                  
         <li><a href="#" data-bs-toggle="modal" data-bs-target="#deleteSnslinkModal{{ $snslink->id }}">削除</a></li>     
     @endforeach
 
     <div>
         <a href="#" data-bs-toggle="modal" data-bs-target="#addSnslinkModal{{ $introduction->id }}">SNSリンクを追加する</a>
-        <a href="{{ route('introduction.edit', $introduction) }}" >
-            <div>   
-                編集
-            </div>
-        </a>          
+        <a href="{{ route('introduction.edit', $introduction) }}" >編集</a>          
     </div>
 
 

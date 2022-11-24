@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Introduction;
+use App\Models\Snslink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +18,9 @@ class IntroductionController extends Controller
     public function index()
     {
         $introduction = Auth::user()->introduction;
-
-        return view('introduction.index', compact('introduction'));
+        $snslinks = Snslink::all();
+        
+        return view('introduction.index', compact('introduction','snslinks'));
     }
 
     /**
@@ -65,8 +67,9 @@ class IntroductionController extends Controller
     public function show(Introduction $introduction)
     {
         $introduction = Auth::user()->introduction;
+        $snslinks = Snslink::all();
 
-        return view('introduction.show', compact('introduction'));
+        return view('introduction.show', compact('introduction','snslinks'));
 
     }
 
@@ -79,8 +82,10 @@ class IntroductionController extends Controller
     public function edit(Introduction $introduction)
     {
         $introduction = Auth::user()->introduction;
+        $snslinks = Snslink::all();
 
-        return view('introduction.edit', compact('introduction'));
+
+        return view('introduction.edit', compact('introduction','snslinks'));
     }
 
     /**
@@ -103,8 +108,10 @@ class IntroductionController extends Controller
         $introduction->self_introduction = $request->input('self_introduction');
         $introduction->user_id = Auth::id();
         $introduction->save();
+        $snslinks = Snslink::all();
 
-        return redirect()->route('introduction.index');
+
+        return redirect()->route('introduction.index','snslinks');
     }
 
     /**

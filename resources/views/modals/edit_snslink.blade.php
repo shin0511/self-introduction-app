@@ -5,10 +5,11 @@
                 <h5 class="modal-title" id="editSnslinkModalLabel{{ $snslink->id }}">Snslinkの編集</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
             </div>
-            <form action="{{ route('introductions.snslinks.update', [$introduction, $snslink]) }}" method="post">
+            <form action="{{ route('introduction.snslinks.update', [$introduction, $snslink]) }}" method="post">
                 @csrf
                 @method('patch')  
                 <div class="modal-body">
+                    <lavel>{{ $snslink->snsname }}</lavel>
                     <input type="text" class="form-control" name="sns_link" value="{{ $snslink->sns_link }}">                                         
                 </div>
                 <div class="modal-footer">

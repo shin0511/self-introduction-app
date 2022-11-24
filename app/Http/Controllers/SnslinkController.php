@@ -15,16 +15,17 @@ class SnslinkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Introduction $introduction)
-    {
+    public function store(Request $request, Introduction $introduction){
+        
         $snslink = new Snslink();
         $snslink->snsname = $request->input('snsname');
         $snslink->sns_link = $request->input('sns_link');
         $snslink->user_id = Auth::id();
         $snslink->introduction_id = $introduction->id;
         $snslink->save();        
+        $snslinks = Snslink::all();
 
-        return redirect()->route('introduction.index');
+        return redirect()->route('introduction.index', compact('introduction','snslinks'));
     }
 
     /**
@@ -36,11 +37,11 @@ class SnslinkController extends Controller
      */
     public function update(Request $request, Introduction $introduction, Snslink $snslink)
     {
-        $snslink->snsname = $request->input('snsname');
         $snslink->sns_link = $request->input('sns_link');
         $snslink->user_id = Auth::id();
         $snslink->introduction_id = $introduction->id;
-        $snslink->save();        
+        $snslink->save();
+
 
         return redirect()->route('introduction.index');
     }
@@ -55,6 +56,6 @@ class SnslinkController extends Controller
     {
         $snslink->delete();
 
-        return redirect()->route('introduction.index');
+        return redirect()->route('introduction.index',compact('snslink'));
     }
 }
