@@ -9,9 +9,6 @@ class Introduction extends Model
 {
     use HasFactory;
 
-    /**
-     * 自己紹介に関連しているユーザーの取得
-     */
     public function user() {
         return $this->belongsTo(User::class);
     }
@@ -19,4 +16,6 @@ class Introduction extends Model
     public function snslinks() {
         return $this->hasMany(Snslink::class);
     }
+
+
 }

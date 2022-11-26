@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\SnslinkController;
+use App\Http\Controllers\WebController;
+
 
 
 /*
@@ -16,13 +18,13 @@ use App\Http\Controllers\SnslinkController;
 |
 */
 
-Route::get('/', [IntroductionController::class, 'index'])->middleware('auth');
-
+Route::get('/', [WebController::class, 'index'])->name('web.index');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [WebController::class, 'index'])->name('home');
 
-Route::resource('introduction', IntroductionController::class)->middleware('auth');
+Route::resource('introduction', IntroductionController::class)->except(['show'])->middleware('auth');
+Route::get('/introduction/{introduction}',[IntroductionController::class,'show'])->name('introduction.show');
 
 Route::resource('introduction.snslinks', SnslinkController::class)->only(['store', 'update', 'destroy'])->middleware('auth');
