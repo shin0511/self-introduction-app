@@ -17,6 +17,7 @@ class IntroductionController extends Controller
      */
     public function index()
     {
+        $introduction =array();
         $introduction = Auth::user()->introduction;
         $snslinks = Snslink::all();
         
@@ -66,7 +67,6 @@ class IntroductionController extends Controller
      */
     public function show(Introduction $introduction)
     {
-        $introduction = Auth::user()->introduction;
         $snslinks = Snslink::all();
 
         return view('introduction.show', compact('introduction','snslinks'));
@@ -123,7 +123,5 @@ class IntroductionController extends Controller
     public function destroy(Introduction $introduction)
     {
         $introduction->delete();
-
-        return redirect()->route('introduction.index');
     }
 }

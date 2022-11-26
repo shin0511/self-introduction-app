@@ -15,31 +15,24 @@
     </div>
 @endif
 
-@empty ($introduction)
-<div>
-    <a href="{{ route('introduction.create') }}" >
-        <div>   
-            <span>＋</span>&nbsp;自分の自己紹介を登録する
-        </div>
-    </a>          
-</div> 
-@endempty
-
-@isset ($introduction)
+<h5>
+    <a href="{{ route('web.index') }}">TOPページに戻る</a>
+</h5> 
 <div>
     <h3>ニックネーム</h3>
     <p>{{$introduction->nickname}}</p>
     <h3>自己紹介</h3>
     <p>{{$introduction->self_introduction}}</p>
+
 </div>
 
-<a href="{{ route('introduction.edit', $introduction) }}" >
-        <div>   
-            編集
-        </div>
-    </a>          
-
-@endisset
+@foreach ($snslinks as $snslink) 
+    @if ($snslink->introduction_id == $introduction->id)
+        <h5>
+            <a href="{{ $snslink->sns_link }}">{{ $snslink->snsname }}</a>
+        </h5>
+    @endif
+@endforeach   
 
 
 

@@ -23,9 +23,8 @@ class SnslinkController extends Controller
         $snslink->user_id = Auth::id();
         $snslink->introduction_id = $introduction->id;
         $snslink->save();        
-        $snslinks = Snslink::all();
 
-        return redirect()->route('introduction.index', compact('introduction','snslinks'));
+        return redirect()->route('introduction.index', compact('introduction'));
     }
 
     /**
