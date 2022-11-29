@@ -11,16 +11,16 @@
   </div>
   <!-- 自己紹介登録 -->
   <a href="{{ route('introduction.create') }}" >
-      <div>   
-          <span>＋</span>&nbsp;自分の自己紹介を登録する
-      </div>
+    <span>＋</span>&nbsp;自分の自己紹介を登録する
   </a>          
+  {{ $introductions->links() }}
+
   <!-- 一覧表示 -->
   @foreach($introductions as $introduction)
-
-  <h5><span>ニックネーム：</span>{{ $introduction-> nickname}}</h5>
-  <a href="{{ route('introduction.show',$introduction)}}">このユーザーの自己紹介を見る</a>
-
+  <div>
+    <a href="{{ route('introduction.show',$introduction)}}">&darr;このユーザーの自己紹介を見る&darr;</a>
+    <h5 class="nickname"><span>ニックネーム：</span>{{ $introduction-> nickname}}</h5>
+  </div>
   @endforeach
   {{ $introductions->links() }}
 
