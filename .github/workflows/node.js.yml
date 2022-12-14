@@ -44,5 +44,5 @@ jobs:
         FTP_USERNAME: ${{ secrets.FTP_USERNAME }} # FTPのユーザー名を設定
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }} # FTPのパスワードを設定
         LOCAL_DIR: dist                           # どのディレクトリのデータをアップロードするか
-        REMOTE_DIR: /nosukeportfolio.xyz/self-introduction-app      # ロリポップFTPサーバのどのディレクトリにアップロードするか
+        REMOTE_DIR: /nosukeportfolio.xyz/self-introduction-app      # ロリポップ!FTPサーバのどのディレクトリにアップロードするか
         ARGS: --delete
