@@ -1,5 +1,6 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
 name: Node.js CI
 
 on:
@@ -14,7 +15,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+      
++        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -24,8 +26,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
+    - run: npm test
     - name: npm install        # パッケージをインストール
       run: npm install
+    - name: test
+      run: npm run test:unit   # unitテストを実行
     - name: build              # ビルド
       run: npm run build --if-present
 
@@ -34,11 +39,10 @@ jobs:
 
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@2.0.0   # FTPを使ってサーバーにDeployするアクションを実行
-      
-      env:
+      env:                                        
         FTP_SERVER: ${{ secrets.FTP_SERVER }}     # FTPサーバーのURLを設定
         FTP_USERNAME: ${{ secrets.FTP_USERNAME }} # FTPのユーザー名を設定
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }} # FTPのパスワードを設定
         LOCAL_DIR: dist                           # どのディレクトリのデータをアップロードするか
-        REMOTE_DIR: /nosukeportfolio.xyz/self-introduction-app      # ロリポップFTPサーバのどのディレクトリにアップロードするか
+        REMOTE_DIR: /      # ロリポップ！FTPサーバのどのディレクトリにアップロードするか
         ARGS: --delete
