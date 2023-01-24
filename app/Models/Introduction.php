@@ -17,5 +17,7 @@ class Introduction extends Model
         return $this->hasMany(Snslink::class);
     }
 
-
+    protected $fillable = [
+        'path',
+    ];
 }

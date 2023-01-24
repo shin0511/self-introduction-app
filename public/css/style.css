@@ -1,3 +1,70 @@
-.nickname {
-  color: blue;
+main {
+  max-width: 1080px;
+  min-width: 960px;
+  width: 100%;
+  margin: 60px  auto;
+}
+
+#search-add{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+#introductionflex{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#introduction-link{
+  max-width: 30%;
+  width: 90%;
+  height: 180px;
+  margin: 0 3%  50px 0;
+  background-color: #e0fbff;
+  border-radius:10px;
+  box-shadow: 2px 3px 2px gray;
+  text-decoration: none;
+  color: black
+}
+#introduction-link:link{
+  color: black;
+}
+#introduction-link:hover{
+  color: black;
+}
+#introduction-link:active{
+  color: black;
+  text-decoration: none;
+}
+
+#introduction-link > h5{
+  margin: 10px 0 10px 20px;
+}
+
+
+#introduction-content{
+  display: flex;
+}
+
+.introduction-img{
+  margin-left:10px;
+  
+  background-size:  cover;
+  background-repeat: no-repeat;
+  background-position: left top;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+
+
+.introduction {
+  width: 50%;
+  margin-left: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden; 
+  text-decoration: none;
 }

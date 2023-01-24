@@ -20,16 +20,21 @@
 </div>
 
 <h2>自己紹介の登録</h2>
-<form action="{{ route('introduction.store') }}" method="post">
+<form action="{{ route('introduction.store') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div>
       <label>ニックネーム</label><span style="color:red">必須</span>
       <input type="text" name="nickname">
     </div>
     <div>
+      <label>アイコン</label>
+      <input type="file" name="icon" accept="image/*">
+    </div>
+    <div>
       <label>自己紹介</label><span style="color:red">必須</span>
       <textarea name="self_introduction"></textarea>
     </div>
+    
     <div>
       <button type="submit">登録</button>
     </div>

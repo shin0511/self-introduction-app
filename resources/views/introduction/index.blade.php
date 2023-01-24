@@ -40,7 +40,9 @@
         <p>{{$introduction->nickname}}</p>
         <h3>自己紹介</h3>
         <p>{{$introduction->self_introduction}}</p>
-        
+        @isset ($introduction->path)
+        <img src="{{ asset($introduction->path) }}">
+        @endisset
     </div>
 
     @foreach ($snslinks as $snslink) 

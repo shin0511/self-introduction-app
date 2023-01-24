@@ -50,12 +50,31 @@ class IntroductionController extends Controller
             'self_introduction' => 'required',
         ]);
 
+        // ディレクトリ名
+        $dir = 'image';
+        $file=$request->file('icon');
+
+        // sampleディレクトリに画像を保存
+        if(!empty($file)){
+            // アップロードされたファイル名を取得
+            $file_name = $request->file('icon')->getClientOriginalName();
+            // 取得したファイル名で保存
+            $request->file('icon')->storeAs('public/' . $dir, $file_name);
+
+            $introduction = new Introduction();
+            $introduction->nickname = $request->input('nickname');
+            $introduction->self_introduction = $request->input('self_introduction');
+            $introduction->path = 'storage/' . $dir . '/' . $file_name;
+            $introduction->user_id = Auth::id();
+            $introduction->save();
+        }
+        elseif(empty($file)){
         $introduction = new Introduction();
         $introduction->nickname = $request->input('nickname');
         $introduction->self_introduction = $request->input('self_introduction');
         $introduction->user_id = Auth::id();
         $introduction->save();
-
+        }
         return redirect()->route('introduction.index');
     }
 
@@ -104,12 +123,31 @@ class IntroductionController extends Controller
             'self_introduction' => 'required',
         ]);
 
+        // ディレクトリ名
+        $dir = 'image';
+        $file=$request->file('icon');
+
+        // sampleディレクトリに画像を保存
+        if(isset($file)){
+            // アップロードされたファイル名を取得
+            $file_name = $request->file('icon')->getClientOriginalName();
+            // 取得したファイル名で保存
+            $request->file('icon')->storeAs('public/' . $dir, $file_name);
+
+            $introduction->nickname = $request->input('nickname');
+            $introduction->self_introduction = $request->input('self_introduction');
+            $introduction->path = 'storage/' . $dir . '/' . $file_name;
+            $introduction->user_id = Auth::id();
+            $introduction->save();
+            $snslinks = Snslink::all();
+        }
+        elseif(empty($file)){
         $introduction->nickname = $request->input('nickname');
         $introduction->self_introduction = $request->input('self_introduction');
         $introduction->user_id = Auth::id();
         $introduction->save();
         $snslinks = Snslink::all();
-
+        }
 
         return redirect()->route('introduction.index','snslinks');
     }

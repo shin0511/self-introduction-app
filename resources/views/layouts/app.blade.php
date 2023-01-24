@@ -18,12 +18,13 @@
 
     <!--Style-->
     <link href="{{secure_asset('/css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/css/style.css')  }}" >
 </head>
-<body style="padding: 60px 0;">
+<body>
     <div id="app">
         @include('layouts.header')
 
-        <main class="py-4">
+        <main class="py-4" >
             @yield('content')
         </main>
 

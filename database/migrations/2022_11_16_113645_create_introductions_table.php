@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nickname');
             $table->string('self_introduction');
+            $table->string('path')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();            
             $table->timestamps();
         });

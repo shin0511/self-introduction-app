@@ -20,7 +20,7 @@ class WebController extends Controller
             $query->where('nickname', 'LIKE', "%{$keyword}%");
         }
 
-        $introductions = $query->paginate(20);
+        $introductions = $query->paginate(21);
 
         return view('web.index', compact('introductions', 'keyword'));
     }

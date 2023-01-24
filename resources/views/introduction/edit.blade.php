@@ -20,12 +20,16 @@
 </div>
 
 <h2>自己紹介の登録</h2>
-<form action="{{ route('introduction.update',$introduction) }}" method="post">
+<form action="{{ route('introduction.update',$introduction) }}" method="post" enctype="multipart/form-data"> 
     @csrf
     @method('PUT')
     <div>
       <label for="nickname">ニックネーム</label><span style="color:red">必須</span>
       <input type="text" name="nickname" value="{{ $introduction->nickname}}">
+    </div>
+    <div>
+      <label>アイコン</label>
+      <input type="file" name="icon" accept="image/*">
     </div>
     <div>
       <label for="self_introduction">自己紹介</label><span style="color:red">必須</span>
