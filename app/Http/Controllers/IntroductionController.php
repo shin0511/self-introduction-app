@@ -33,8 +33,14 @@ class IntroductionController extends Controller
     {
         $introduction = Auth::user()->introduction;
 
-        return view('introduction.create')
-        ->with('user', Auth::user());
+        if(!$introduction){
+            return view('introduction.create')
+            ->with('user', Auth::user());
+        }
+        else{
+            $snslinks = Snslink::all();
+        return view('introduction.show', compact('introduction','snslinks'));
+        }
     }
 
     /**

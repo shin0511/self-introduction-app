@@ -20,11 +20,12 @@
     <a href="{{ route('web.index') }}">TOPページに戻る</a>
 </h5> 
 <div>
+    
     <a href="{{ route('introduction.create') }}" >
         <div>   
             <span>＋</span>&nbsp;自分の自己紹介を登録する
         </div>
-    </a>          
+    </a>      
 </div> 
 @endempty
 

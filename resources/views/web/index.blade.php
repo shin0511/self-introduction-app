@@ -10,10 +10,12 @@
         <input type="submit" value="検索">
       </form>
     </div>
+    @guest
     <!-- 自己紹介登録 -->
-    <a href="{{ route('introduction.create') }}" c>
+    <a href="{{ route('introduction.create') }}" >
       <span>＋</span>&nbsp;自分の自己紹介を登録する
     </a>  
+    @endguest
   </div>       
   
   {{ $introductions->links() }}
@@ -31,6 +33,9 @@
       </div>
     </a>
     @endforeach
+    @if($introductions->count() == 0)
+    <h1>検索結果は0件でした</h1>
+    @endif
   </div>
   {{ $introductions->links() }}
 
