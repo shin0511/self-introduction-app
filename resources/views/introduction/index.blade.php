@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>ABOUT ME</h1>
+
 
 <!-- エラーメッセージ -->
 @if ($errors->any())
@@ -36,15 +36,16 @@
     <!-- Snslinkの追加用モーダル -->
     @include('modals.add_snslink')
     
-    <div>
-        <h3>ニックネーム</h3>
-        <p>{{$introduction->nickname}}</p>
-        <h3>自己紹介</h3>
+    <div class="iconflex">
+    @isset ($introduction->path)
+        <div class="introduction-img" style="background-image: url({{ asset($introduction->path) }})"></div>
+    @endisset
+    <div class="iconcontent">
+        <h3>{{$introduction->nickname}}</h3>
+        <h4>自己紹介</h4>
         <p>{{$introduction->self_introduction}}</p>
-        @isset ($introduction->path)
-        <img src="{{ asset($introduction->path) }}">
-        @endisset
     </div>
+</div>
 
     @foreach ($snslinks as $snslink) 
         @if ($snslink->introduction_id == $introduction->id)

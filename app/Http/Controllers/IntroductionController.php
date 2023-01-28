@@ -78,6 +78,7 @@ class IntroductionController extends Controller
         $introduction = new Introduction();
         $introduction->nickname = $request->input('nickname');
         $introduction->self_introduction = $request->input('self_introduction');
+        $introduction->path = 'storage/' . $dir . '/女性.jpg';
         $introduction->user_id = Auth::id();
         $introduction->save();
         }
@@ -147,12 +148,20 @@ class IntroductionController extends Controller
             $introduction->save();
             $snslinks = Snslink::all();
         }
-        elseif(empty($file)){
-        $introduction->nickname = $request->input('nickname');
-        $introduction->self_introduction = $request->input('self_introduction');
-        $introduction->user_id = Auth::id();
-        $introduction->save();
-        $snslinks = Snslink::all();
+        elseif(empty($file) && $introduction->path ){
+            $introduction->nickname = $request->input('nickname');
+            $introduction->self_introduction = $request->input('self_introduction');
+            $introduction->user_id = Auth::id();
+            $introduction->save();
+            $snslinks = Snslink::all();
+        }
+        elseif(empty($file) && $introduction->path ){
+            $introduction->nickname = $request->input('nickname');
+            $introduction->self_introduction = $request->input('self_introduction');
+            $introduction->path = 'storage/' . $dir . '/女性.jpg';
+            $introduction->user_id = Auth::id();
+            $introduction->save();
+            $snslinks = Snslink::all();
         }
 
         return redirect()->route('introduction.index','snslinks');
