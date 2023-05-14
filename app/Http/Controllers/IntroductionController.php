@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Introduction;
 use App\Models\Snslink;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,8 +21,9 @@ class IntroductionController extends Controller
         $introduction =array();
         $introduction = Auth::user()->introduction;
         $snslinks = Snslink::all();
+        $posts = Post::all();
         
-        return view('introduction.index', compact('introduction','snslinks'));
+        return view('introduction.index', compact('introduction','snslinks','posts'));
     }
 
     /**
@@ -39,7 +41,8 @@ class IntroductionController extends Controller
         }
         else{
             $snslinks = Snslink::all();
-        return view('introduction.show', compact('introduction','snslinks'));
+            $posts = Post::all();
+        return view('introduction.show', compact('introduction','snslinks','posts'));
         }
     }
 
@@ -94,8 +97,9 @@ class IntroductionController extends Controller
     public function show(Introduction $introduction)
     {
         $snslinks = Snslink::all();
+        $posts = Post::all();
 
-        return view('introduction.show', compact('introduction','snslinks'));
+        return view('introduction.show', compact('introduction','snslinks',"posts"));
 
     }
 
@@ -109,6 +113,7 @@ class IntroductionController extends Controller
     {
         $introduction = Auth::user()->introduction;
         $snslinks = Snslink::all();
+        $posts = Post::all();
 
 
         return view('introduction.edit', compact('introduction','snslinks'));

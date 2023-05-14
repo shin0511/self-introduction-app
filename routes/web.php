@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\SnslinkController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\WebController;
 
 
@@ -28,3 +29,5 @@ Route::resource('introduction', IntroductionController::class)->except(['show'])
 Route::get('/introduction/{introduction}',[IntroductionController::class,'show'])->name('introduction.show');
 
 Route::resource('introduction.snslinks', SnslinkController::class)->only(['store', 'update', 'destroy'])->middleware('auth');
+
+Route::resource('introduction.posts', PostController::class)->only(['store', 'update', 'destroy'])->middleware('auth');

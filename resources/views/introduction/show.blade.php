@@ -41,6 +41,29 @@
     @endif
 @endforeach   
 
+@foreach ($posts as $post) 
+    @if ($post->introduction_id == $introduction->id)
+        <h5>{{ $post->title }}</h5>
+        <div>{{ $post->caption }}</div>
+        @if($post->category == "music")
+            <audio controls controlsList="nodownload">
+                <source src="{{ asset($post->workspath) }}">
+            </audio>
+        @endif
+        @if($post->category == "illustration")
+            <img src="{{ asset($post->workspath) }}">
+        @endif
+        @if($post->category == "photo")
+            <img src="{{ asset($post->workspath) }}">
+        @endif
+        @if($post->category == "animation")
+            <video controls controlsList="nodownload" src="{{ asset($post->workspath) }}"></video>
+        @endif
+        @if($post->category == "novel")
+            <object  data="{{ asset($post->workspath) }}"></object>
+        @endif
+    @endif
+@endforeach   
 
 
 @endsection

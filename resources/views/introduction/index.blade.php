@@ -35,6 +35,8 @@
     </h5> 
     <!-- Snslinkの追加用モーダル -->
     @include('modals.add_snslink')
+    <!-- Postの追加用モーダル -->
+    @include('modals.add_post')
     
     <div class="iconflex">
     @isset ($introduction->path)
@@ -49,9 +51,9 @@
 
     @foreach ($snslinks as $snslink) 
         @if ($snslink->introduction_id == $introduction->id)
-            <!-- ToDoの編集用モーダル -->
+            <!-- Snslinkの編集用モーダル -->
             @include('modals.edit_snslink')
-            <!-- ToDoの削除用モーダル -->
+            <!-- Snslinkの削除用モーダル -->
             @include('modals.delete_snslink')
             <h5>
                 <a href="{{ $snslink->sns_link }}">{{ $snslink->snsname }}</a>
@@ -66,6 +68,40 @@
         <a href="{{ route('introduction.edit', $introduction) }}" >編集</a>          
     </div>
     
+    <div>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#addPostModal{{ $introduction->id }}">新規投稿</a>
+    </div>
+
+    @foreach ($posts as $post) 
+        @if ($post->introduction_id == $introduction->id)
+            <!-- Snslinkの編集用モーダル -->
+            @include('modals.edit_post')
+            <!-- Snslinkの削除用モーダル -->
+            @include('modals.delete_post')
+            
+            <h5>{{ $post->title }}</h5>
+            <div>{{ $post->caption }}</div>
+            @if($post->category == "music")
+            <audio controls controlsList="nodownload">
+                <source src="{{ asset($post->workspath) }}">
+            </audio>
+            @endif
+            @if($post->category == "illustration")
+                <img src="{{ asset($post->workspath) }}">
+            @endif
+            @if($post->category == "photo")
+                <img src="{{ asset($post->workspath) }}">
+            @endif
+            @if($post->category == "animation")
+                <video controls controlsList="nodownload" src="{{ asset($post->workspath) }}"></video>
+            @endif
+            @if($post->category == "novel")
+                <object type="{{$post->category}}" data="{{ asset($post->workspath) }}"></object>
+            @endif
+            <li><a href="#" data-bs-toggle="modal" data-bs-target="#editPostModal{{ $post->id }}">編集</a></li>                                                  
+            <li><a href="#" data-bs-toggle="modal" data-bs-target="#deletePostModal{{ $post->id }}">削除</a></li>   
+        @endif
+    @endforeach
 @endisset
 
 @endsection
